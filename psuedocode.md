@@ -1,9 +1,34 @@
 Two players - two variables indicating players
+```js
+
+```
 cards need to be cantagorized into two arrays..
 put the cards into an object
-array of suites 
+```js
+const cards = {
+    suits: ['S', 'C', 'H', 'D'],
+    values: ['2', '3', '4', '5', '6', '7', '8', '9', '10','jack', 'queen', 'king', 'ace'],
+    deck = [],
+}
+```
+array of suites ['c','d','h','s']
 array of cards [2, 3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen, King, Ace]
 Ace needs to be able to be a value of 2 and 11 dependent on conditions
+jack, qeen and king also need a function to set value to 10
+``` js
+function getValue(card) {
+    let data = card.split ("-"); // "4-C" -> ["4", "C"]
+    let value = data[0];
+
+    if(isNan(value)){ // so if the value is not a number which would be any face card or ace. 
+        if (value == "A") {
+            return 11;
+        }
+        return 10;
+    }
+    return parseInt(value);
+}
+```
 variable for dealer cards
 variable for player cards
 varble for showing cards
@@ -48,8 +73,10 @@ domelements will need to be two buttons for hit and stay
 dom element to input the value of the sum of the cards
 
 
-
+create a file of images for the dec, title each image to match the titles of the arrays... (2-C, 5-S, 10-H, K-D etc.)
 create functions for the event listeners
+
+
 
 
 

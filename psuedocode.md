@@ -35,6 +35,13 @@ varble for showing cards
 variable for hidden cards
 
 function to create the deck of cards using the arrays in the object of cards ... maybe create a method in the card object?
+```js
+function buildDeck() {
+    suits = card.s
+    let deck =card.deck
+    for(let i=0; i < suits.length)
+}
+```
 
 function to discard used cards *
 function to deal cards* (* these could be in the same function)

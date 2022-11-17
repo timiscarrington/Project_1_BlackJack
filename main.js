@@ -7,46 +7,41 @@ const standBtn = document.querySelector('#stand')
   
 let cards={
     deck : [],
-    suits: [],
-    values: []
+    suits: ['C','D','H','S'],
+    values: ['A', '2', '3', '4', '5', '6', '7','8','9','10','J','Q', 'K'],
+    
   }
 const playerOne = {
     sumCards: 0,
-    cards: [''],
+    cards:[],
    
    
 }
 const dealer = {
     sumCards: 0,
-    cards: [''],
+    cards: [],
+    facedown:[]
 }
 
 const startGame = () => {
     buildDeck();
     shuffle();
     deal();
+    sumOfHand();
+    sumOfDealer();
     displayPlayerHands();
 }
 
 
 const buildDeck = () => {
-    let values = ['A', '2', '3', '4', '5', '6', '7','8','9','10','J','Q', 'K']
-    let suits = ['C','D','H','S']
-
-    for(let i=0; i < suits.length; i++ ){
-        for(j=0; j< values.length; j++) {
-            cards.deck.push(values[j] + suits[i])
-        }let cardValues = parseInt(values[j]);
-         if(values[j]== 'K' || values[j] == 'Q' || values[j]== 'J'){
-                cardValues = 10
-        }if(values[j] == 'A'){
-            cardValues = 11
-            cards.suits.push( suits[i])
-            cards.values.push(cardValues)
+    
+    for(let i=0; i < cards.suits.length; i++ ){
+        for(j=0; j< cards.values.length; j++) {
+            cards.deck.push(cards.values[j] + cards.suits[i])
         }
-    }
-    return cards;
+    }return cards.deck
 }
+
 
 const shuffle = () => {
 
@@ -63,28 +58,90 @@ const shuffle = () => {
  const deal = () => {
    playerOne.cards= [cards.deck.shift(), cards.deck.shift()]
    dealer.cards = [cards.deck.shift(), cards.deck.shift()]
+   
  }
 
  const displayPlayerHands = () => {
-    document.querySelector('#player_hand').innerHTML = playerOne.cards
-    document.querySelector('#dealer_hand').innerHTML = dealer.cards 
-
+    document.querySelector('#player_hand').textContent = playerOne.cards;
+    document.querySelector('#dealer_hand').textContent = dealer.cards;
+    document.querySelector('#hand_total').textContent = "Hand Total:" + playerOne.sumCards;
+    document.querySelector('#dealer_total').textContent = "Dealer Total:" + dealer.sumCards;
  }
 
 
-
- const PlayerHit = () => {
- playerOne.cards += [cards.deck.shift()]
+const playerStand = () =>{
+    if(dealer.sumCards < 17){
+        dealer.cards.push(cards.deck.shift())
+        sumOfDealer();
+        displayPlayerHands();
+    }if(dealer.sumCards >= 17){
+        sumOfDealer();
+        displayPlayerHands();
+        
+    }
+}
+ const playerHit = () => {
+    
+ playerOne.cards.push(cards.deck.shift()) 
+ sumOfHand();
+ bust();
  displayPlayerHands();
 }
-const sumCards = () => {
 
+const declareResult= ()=>{
+    if(playerOne.sumCards <= dealer.sumCards){
+        alert('You lost the hand!')
+    }if(playerOne.sumCards > dealer.sumCards){
+        alert('You Win!')
+    }
+}
+
+
+const sumOfHand = () => {
+    let cardInfo = playerOne.cards
+    let sum = 0
+    for(i = 0; i<cardInfo.length; i++){
+    if(cardInfo[i].includes('K')|| cardInfo[i].includes('Q')|| cardInfo[i].includes('J')){
+        sum += 10;
+    }else if (cardInfo[i].includes('A')){
+        sum += 11;
+        }else{
+        sum += parseInt(cardInfo[i])
+    
+        }
+            playerOne.sumCards = sum
+    }   
+        return playerOne.sumCards;
+}
+
+const sumOfDealer = () => {
+    let cardInfo = dealer.cards
+    let sum = 0
+    for(i = 0; i<cardInfo.length; i++){
+    if(cardInfo[i].includes('K')|| cardInfo[i].includes('Q')|| cardInfo[i].includes('J')){
+        sum += 10;
+    }else if (cardInfo[i].includes('A')){
+        sum += 11;
+        }else{
+        sum += parseInt(cardInfo[i])
+        
+        }
+            dealer.sumCards = sum
+    }
+        return playerOne.sumCards;
 }
  
-
+const bust = () =>{
+    if(playerOne.sumCards > 21){
+        alert('You Busted')
+        return true;
+     }
+    return false;
+}
 
  
 
 
  startGameBtn.addEventListener('click', startGame);
- hitBtn.addEventListener('click', PlayerHit)
+ hitBtn.addEventListener('click', playerHit);
+ standBtn.addEventListener('click', playerStand);

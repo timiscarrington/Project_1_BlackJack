@@ -1,7 +1,7 @@
 const startGameBtn = document.querySelector('#startGame')
 const hitBtn = document.querySelector('#hit');
 const standBtn = document.querySelector('#stand')
-// const playerTotal = document.querySelector('#hand_total').textContent = "Hand Total:" + playerOne.sumCards;
+
 
  
   
@@ -127,7 +127,8 @@ const playerHit = () => {
        src.appendChild(cardImg); 
       displayPlayerTotal();
        bust();
-   }
+}
+   
 
    const playerStand = () => {
         
@@ -148,27 +149,39 @@ const playerHit = () => {
     }
     else if(dealer.sumCards > 21){
         alert('dealer busts! You win')
+    }else if(dealer.sumCards === playerOne.sumCards){
+        alert('Dealer wins in a draw')
+    }else if(dealer.sumCards > playerOne.sumCards){
+        alert('Dealer wins')
+    }else{
+        alert('You win')
     }
-        decideWinner();
+   
+        
+    }
+  
     
-}
+
+
+// function decideWinner () {
+//     let player = playerOne.sumCards
+//     let other = dealer.sumCards
+//     debugger
+//     if(player > other){
+//         alert ('You Win')
+//         // document.querySelector('#display_results').textContent = 'You win!'
+//     }
+//     if( player === other) {
+//         alert ('Dealer Wins')
+//         // document.querySelector('#display_results').textContent = 'Dealer Wins in a draw'
+//     }
+// }
 
 
 const displayPlayerTotal= () => {
     document.querySelector('#hand_total').textContent = "Hand Total:" + playerOne.sumCards;
 }
 
-const decideWinner = () => {
-    let player = playerOne.sumCards
-    let dealer = dealer.sumCards
-
-    if(player > dealer){
-        document.querySelector('#display_results').textContent = 'You win!'
-    }
-    if( player === dealer) {
-        document.querySelector(#'display_results').textContent = 'Dealer Wins in a draw'
-    }
-}
 
 const bust = () =>{
     if (playerOne.sumCards > 21) {

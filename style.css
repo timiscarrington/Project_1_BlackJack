@@ -22,4 +22,7 @@ img {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     column-gap: 10px;
 }
- 
+ #display_results{
+    text-align: center;
+    font-size: 20px;
+ }

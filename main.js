@@ -7,20 +7,19 @@ const standBtn = document.querySelector('#stand')
   
 let cards={
     deck : [],
-    suits: ['C','D','H','S'],
+    suits: ['Clubs','Diamonds','Hearts','Spades'],
     values: ['A', '2', '3', '4', '5', '6', '7','8','9','10','J','Q', 'K'],
     
   }
 const playerOne = {
     sumCards: 0,
     cards:[],
-   
+    
    
 }
 const dealer = {
     sumCards: 0,
     cards: [],
-    facedown:[]
 }
 
 const startGame = () => {
@@ -37,7 +36,7 @@ const buildDeck = () => {
     
     for(let i=0; i < cards.suits.length; i++ ){
         for(j=0; j< cards.values.length; j++) {
-            cards.deck.push(cards.values[j] + cards.suits[i])
+            cards.deck.push(cards.values[j] + '-' + cards.suits[i])
         }
     }return cards.deck
 }
@@ -54,11 +53,22 @@ const shuffle = () => {
      return cards.deck;
    }
 
+   const renderDeck = () =>{
+    document.getElementById("deck").innerHTML="";
+
+    for(let i=0; i<cards.deck.length; i++){
+    let card = document.createElement('div');
+    let value = document.createElement('div');
+    let suit = document.createElement('div');
+    card.className = 'card';
+    value.className = 'value';
+    suit.className = 'suit' + cards.deck[i].suits
+    }
+   }
  
  const deal = () => {
    playerOne.cards= [cards.deck.shift(), cards.deck.shift()]
-   dealer.cards = [cards.deck.shift(), cards.deck.shift()]
-   
+   dealer.cards = [cards.deck.shift(),cards.deck.shift()]
  }
 
  const displayPlayerHands = () => {
@@ -70,14 +80,16 @@ const shuffle = () => {
 
 
 const playerStand = () =>{
-    if(dealer.sumCards < 17){
-        dealer.cards.push(cards.deck.shift())
+    while(dealer.sumCards < 17){
+    dealer.cards.push(cards.deck.shift())
+    }
+    sumOfDealer();
+    displayPlayerHands();
+
+    if(dealer.sumCards >= 17){
         sumOfDealer();
         displayPlayerHands();
-    }if(dealer.sumCards >= 17){
-        sumOfDealer();
-        displayPlayerHands();
-        
+        endOfHand()
     }
 }
  const playerHit = () => {
@@ -88,11 +100,13 @@ const playerStand = () =>{
  displayPlayerHands();
 }
 
-const declareResult= ()=>{
+const endOfHand = ()=>{
     if(playerOne.sumCards <= dealer.sumCards){
         alert('You lost the hand!')
     }if(playerOne.sumCards > dealer.sumCards){
         alert('You Win!')
+    }if(playerOne.sumCards === dealer.sumCards){
+        alert('You lose in a tie')
     }
 }
 
@@ -124,12 +138,13 @@ const sumOfDealer = () => {
         sum += 11;
         }else{
         sum += parseInt(cardInfo[i])
-        
         }
             dealer.sumCards = sum
     }
-        return playerOne.sumCards;
+        return dealer.sumCards;
 }
+
+
  
 const bust = () =>{
     if(playerOne.sumCards > 21){

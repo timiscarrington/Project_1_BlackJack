@@ -9,7 +9,6 @@ let cards={
     deck : [],
     suits: ['C','D','H','S'],
     values: ['A', '2', '3', '4', '5', '6', '7','8','9','10','J','Q', 'K'],
-    
   }
 const playerOne = {
     sumCards: 0,
@@ -60,10 +59,9 @@ const deal = () => {
 }
 
 const displayPlayerHands = () => {
-    document.querySelector('#player_hand').textContent = playerOne.cards;
-    document.querySelector('#dealer_hand').textContent = dealer.cards;
+    
     document.querySelector('#hand_total').textContent = "Hand Total:" + playerOne.sumCards;
-    document.querySelector('#dealer_total').textContent = "Dealer Total:" + dealer.sumCards;
+    // document.querySelector('#dealer_total').textContent = "Dealer Total:" + dealer.sumCards;
     
     for (let i = 0; i <= playerOne.cards.length - 1; i++) {
         const cardValue = playerOne.cards[i].split('-');
@@ -72,6 +70,7 @@ const displayPlayerHands = () => {
         let src = document.getElementById("player_hand");
         src.appendChild(img);
     }
+
     for (let i = 0; i <= dealer.cards.length - 1; i++) {
         const cardValue = dealer.cards[i].split('-');
         let img = document.createElement("img");
@@ -81,31 +80,31 @@ const displayPlayerHands = () => {
     }
 }
 
-// const playerStand = () =>{
-//     while(dealer.sumCards < 17){
-//         dealer.cards.push(cards.deck.shift())
-        
-        
-        
-//         sumOfDealer();
-//         displayPlayerHands();
-
-//         if(dealer.sumCards >= 17){
-//             sumOfDealer();
-//             displayPlayerHands();
-//             endOfHand()
-//             }
-//         }
-//     }
- const playerHit = () => {
-    playerOne.cards.push(cards.deck.shift()) 
-    
-    sumOfHand();
-    bust();
-    displayPlayerHands();
+const playerStand = () => {
+    while(dealer.sumCards < 17){
+        dealer.cards.push(cards.deck.shift())
+        let cardValue= dealer.cards.slice(-1)
+        let cardImg = document.createElement("img")
+        cardImg.src = './cards/'+ cardValue+ '.png';
+        let src = document.getElementById("dealer_hand");
+            src.appendChild(cardImg); 
+            sumOfDealer();
+    }
 }
+const playerHit = () => {
+    
+     playerOne.cards.push(cards.deck.shift())
+    let cardValue= playerOne.cards.slice(-1)
+    let cardImg = document.createElement("img")
+    cardImg.src = './cards/'+ cardValue+ '.png';
+    let src = document.getElementById("player_hand");
+        src.appendChild(cardImg); 
+        sumOfHand();
+        bust();
+    }
+ 
 
-const endOfHand = ()=>{
+const endOfHand = () =>{
     if(playerOne.sumCards <= dealer.sumCards){
         alert('You lost the hand!')
     }if(playerOne.sumCards > dealer.sumCards){

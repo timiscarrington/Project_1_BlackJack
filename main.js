@@ -1,7 +1,7 @@
 const startGameBtn = document.querySelector('#startGame')
 const hitBtn = document.querySelector('#hit');
 const standBtn = document.querySelector('#stand')
-
+// const playerTotal = document.querySelector('#hand_total').textContent = "Hand Total:" + playerOne.sumCards;
 
  
   
@@ -27,6 +27,7 @@ const startGame = () => {
     sumOfHand();
     sumOfDealer();
     displayPlayerHands();
+    displayPlayerTotal();
 }
 
 
@@ -55,12 +56,14 @@ const shuffle = () => {
  
 const deal = () => {
    playerOne.cards = [cards.deck.shift(), cards.deck.shift()]
+   sumOfHand()
    dealer.cards = [cards.deck.shift(), cards.deck.shift()]
+   sumOfDealer(dealer.sumCards)
 }
 
 const displayPlayerHands = () => {
     
-    document.querySelector('#hand_total').textContent = "Hand Total:" + playerOne.sumCards;
+   
     // document.querySelector('#dealer_total').textContent = "Dealer Total:" + dealer.sumCards;
     
     for (let i = 0; i <= playerOne.cards.length - 1; i++) {
@@ -80,41 +83,6 @@ const displayPlayerHands = () => {
     }
 }
 
-const playerStand = () => {
-    while(dealer.sumCards < 17){
-        dealer.cards.push(cards.deck.shift())
-        let cardValue= dealer.cards.slice(-1)
-        let cardImg = document.createElement("img")
-        cardImg.src = './cards/'+ cardValue+ '.png';
-        let src = document.getElementById("dealer_hand");
-            src.appendChild(cardImg); 
-            sumOfDealer();
-    }
-}
-const playerHit = () => {
-    
-     playerOne.cards.push(cards.deck.shift())
-    let cardValue= playerOne.cards.slice(-1)
-    let cardImg = document.createElement("img")
-    cardImg.src = './cards/'+ cardValue+ '.png';
-    let src = document.getElementById("player_hand");
-        src.appendChild(cardImg); 
-        sumOfHand();
-        bust();
-    }
- 
-
-const endOfHand = () =>{
-    if(playerOne.sumCards <= dealer.sumCards){
-        alert('You lost the hand!')
-    }if(playerOne.sumCards > dealer.sumCards){
-        alert('You Win!')
-    }if(playerOne.sumCards === dealer.sumCards){
-        alert('You lose in a tie')
-    }
-}
-
-
 const sumOfHand = () => {
     let cardInfo = playerOne.cards
     let sum = 0
@@ -127,11 +95,11 @@ const sumOfHand = () => {
         sum += parseInt(cardInfo[i])
     
         }
-            playerOne.sumCards = sum
+        playerOne.sumCards= sum
     }   
     return playerOne.sumCards;
+    
 }
-
 
 const sumOfDealer = () => {
     let cardInfo = dealer.cards
@@ -148,9 +116,60 @@ const sumOfDealer = () => {
     }
     return dealer.sumCards;
 }
+const playerHit = () => {
+    
+    playerOne.cards.push(cards.deck.shift())
+    sumOfHand();
+   let cardValue= playerOne.cards.slice(-1)
+   let cardImg = document.createElement("img")
+   cardImg.src = './cards/'+ cardValue+ '.png';
+   let src = document.getElementById("player_hand");
+       src.appendChild(cardImg); 
+      displayPlayerTotal();
+       bust();
+   }
+
+   const playerStand = () => {
+        
+    if(dealer.sumCards < 17){
+        dealer.cards.push(cards.deck.shift())
+        let cardValue = dealer.cards.slice(-1)
+        let cardImg = document.createElement("img")
+        cardImg.src = './cards/'+ cardValue+ '.png';
+        let src = document.getElementById("dealer_hand");
+            src.appendChild(cardImg); 
+            sumOfDealer();
+    }
+    if(dealer.sumCards < 17){
+        playerStand();
+    }
+    else if(dealer.sumCards === 21){
+        alert('dealer won!')
+    }
+    else if(dealer.sumCards > 21){
+        alert('dealer busts! You win')
+    }
+        decideWinner();
+    
+}
 
 
- 
+const displayPlayerTotal= () => {
+    document.querySelector('#hand_total').textContent = "Hand Total:" + playerOne.sumCards;
+}
+
+const decideWinner = () => {
+    let player = playerOne.sumCards
+    let dealer = dealer.sumCards
+
+    if(player > dealer){
+        document.querySelector('#display_results').textContent = 'You win!'
+    }
+    if( player === dealer) {
+        document.querySelector(#'display_results').textContent = 'Dealer Wins in a draw'
+    }
+}
+
 const bust = () =>{
     if (playerOne.sumCards > 21) {
         alert('You Busted')
@@ -158,9 +177,6 @@ const bust = () =>{
     }
     return false;
 }
-
- 
-
 
  startGameBtn.addEventListener('click', startGame);
  hitBtn.addEventListener('click', playerHit);

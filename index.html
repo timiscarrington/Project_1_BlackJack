@@ -1,39 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script src="main.js"defer></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="main.js" defer></script>
     <title>Document</title>
-</head>
-<body>
-    <div class=" grid"></div>
+  </head>
+  <body>
+    <div class="grid"></div>
     <div id="dealer">
-    <h1>Dealer</h1>
-    <div id="dealer_hand"></div>
-    <div id="dealer_cards"></div>
-    <div id="dealer_total"></div>
+      <h1>Dealer</h1>
+      <div id="dealer_hand"></div>
+      <div id="dealer_cards"></div>
+
+      <div id="dealer_total"></div>
     </div>
-    <br>
+    <div class="modal_card" id="result_modal">
+        <h3>Hand Results</h3>
+        <h5 id="results"></h5>
+        <button id="reset">reset game</button>
+    </div>
+    <br/>
     <div id="player">
-    <h1>Player 1</h1>
-    <div id="player_hand"></div>
-    <div id="player_cards"></div>
-    <div id="hand_total"></div>
-    <div id="deck"></div>
+      <h1>Player 1</h1>
+      <div class= ".player"></div>
+      <div id="player_hand"></div>
+      <div id="player_cards"></div>
+      <div id="hand_total"></div>
+      <div id="deck"></div>
     </div>
     <div id="buttons">
-        <div></div>
-        <div></div>
-    <button id="startGame">start game</button>
-    <button id="hit">Hit</button>
-    <button id="stand">Stand</button>
-        <div></div>
-        <div></div>
-</div>
-<div id="display_results"></div> 
-    
-</body>
+      <div></div>
+      <div></div>
+      <button id="startGame">start game</button>
+      <button id="hit">Hit</button>
+      <button id="stand">Stand</button>
+      <div></div>
+     
+      <div></div>
+    </div>
+    <div id="display_results"></div>
+  </body>
 </html>

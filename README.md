@@ -20,6 +20,8 @@ Pictures of Game during Game Play:
 <img src="/Users/timcarrington/sei/projects/Project_1_BlackJack/duringHand.jpeg">
 <img src="(/Users/timcarrington/sei/projects/Project_1_BlackJack/afterHand.jpeg)">
 
+Link to Game: http://timiscarrington.github.io/Project_1_BlackJack/
+
 Stretch goals:
 - Have the the Ace card perform as a 1 or an 11 dependent on sum of players hand.
 - Create multiplayer functionality

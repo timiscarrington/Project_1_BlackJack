@@ -172,9 +172,9 @@ const playerStand = () => {
 const bust = () => {
   if (playerOne.sumCards > 21) {
     document.querySelector('#results').textContent= `You Bust! Your Hand is: ${playerOne.sumCards}`;
-    return true;
+    toggleResultsModal();
   }
-  return false;
+  
 };
 const toggleResultsModal = () => {
     gameResultModal.classList.toggle('visible');

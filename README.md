@@ -1,3 +1,5 @@
+![banner](Modern Minimal Technology Background Banner.png)
+
 # Project_1_BlackJack
 
 I will be creating the game of BlackJack. The game will be for one player vs the computer (who will be the dealer). The game will start where the dealer deals the player one face up card, then themselves a face down card. Then the player will recieve one face down card and the dealer will recieve their face up card. The goal of the game is to take the numerical value of your cards and try to get as close to 21 as possible. The Player will start their turn after they recieve their cards. Depending on the cards in their hands they will determine wether or not to "hit" or "stay". There are three ways to win. One is to beat the dealer by having the sum of your hand being eaul to or closer to 21 than the dealr. Another win is getting dealt a jack of spades, and an ace (which is BlackJack). Finally the last way to win is the dealer 'busting' (having their sum of cards exceeding 21)

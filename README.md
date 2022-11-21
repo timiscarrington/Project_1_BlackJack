@@ -4,7 +4,7 @@ I will be creating the game of BlackJack. The game will be for one player vs the
 
 
 Wire Frame:
-![alt text](/Users/timcarrington/sei/projects/Project_1_BlackJack/wireframe.jpeg)
+![alt text](/Users/timcarrington/sei/projects/Project_1_BlackJack/wireframe.jpg)
 
 
 Goals:
@@ -21,10 +21,12 @@ Technologies Used:
 HTML, CSS,  & JavaScript
 
 Pictures of Game during Game Play:
-![alt text](/Users/timcarrington/sei/projects/Project_1_BlackJack/gamestart.jpeg)
-![alt text](/Users/timcarrington/sei/projects/Project_1_BlackJack/duringHand.jpeg)
 
-![alt text](/Users/timcarrington/sei/projects/Project_1_BlackJack/afterHand.jpeg)">
+![alt text](/Users/timcarrington/sei/projects/Project_1_BlackJack/gamestart.jpg)
+
+![alt text](/Users/timcarrington/sei/projects/Project_1_BlackJack/duringHand.jpg)
+
+![alt text](/Users/timcarrington/sei/projects/Project_1_BlackJack/afterHand.jpg)
 
 
 

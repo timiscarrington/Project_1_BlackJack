@@ -1,25 +1,26 @@
 body{
     text-align: center;
-    background-color: rgb(24, 158, 62);
-    
+    background-color: #35654d;
+    color:white;
+    font: inherit;
 
 }
 img {
     height: 150px;
     width: 100px;
-    margin: 2px;
+    margin: 1px;
 }
 #dealer {
     display: grid;
-    grid-template-rows: 3fr 3fr 3fr;
+    grid-template-rows: 1fr;
 }
 #player {
     display: grid;
-    grid-template-rows: 3fr 3fr 3fr;
+    grid-template-rows: 1fr 1fr;
 }
 #buttons {
     display:grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr ;
     column-gap: 10px;
 }
  #display_results{
@@ -29,8 +30,12 @@ img {
 
  .modal_card {
     position:fixed;
+    text-align: center;
     z-index: 100;
-    background: white;
+    background: rgb(175, 72, 72);
+    border-style:solid;
+    border-width: 10px;
+    border-color: black;
     border-radius: 10px;
     width: 80%;
     top: 30vh;
@@ -43,3 +48,48 @@ img {
     display:block;
     animation: fade-slide-in 1.3s ease-out forwards; 
  }
+ .start_modal {
+    position:absolute;
+    text-align: center;
+    z-index: 100;
+    background: rgb(175, 72, 72);
+    border-style: solid;
+    border-width: 10px;
+    border-color: antiquewhite;
+    border-radius: 10px;
+    width: 80%;
+    top: 30vh;
+    left: 10%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    display:block;
+ }
+ .start_modal.visible {
+    display:none;
+    animation: fade-slide-in 1.3s ease-out forwards; 
+ }
+ .black {
+    color: black;
+ }
+ .red {
+    color: red;
+ }
+ h2 {
+    color:antiquewhite
+ }
+ h3 {
+    color:black
+ }
+ h4 {
+    color: antiquewhite;
+ }
+ button {
+    font: inherit;
+    background: #a93234;
+    border: 1px solid #0a090a;
+    color: rgb(147, 176, 184);
+    padding: 1rem 2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 0.5rem;
+ }
+ 

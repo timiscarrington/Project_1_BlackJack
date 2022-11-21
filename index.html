@@ -11,30 +11,42 @@
   <body>
     <div class="grid"></div>
     <div id="dealer">
-      <h1>Dealer</h1>
+      <h1><span class="red">&diams;</span><span class="black"> &clubs;</span>Dealer</h1>
       <div id="dealer_hand"></div>
       <div id="dealer_cards"></div>
 
       <div id="dealer_total"></div>
     </div>
     <div class="modal_card" id="result_modal">
-        <h3>Hand Results</h3>
-        <h5 id="results"></h5>
-        <button id="reset">reset game</button>
+        <h2>Hand Results</h2>
+        <h4 id="results"></h4>
+        <h3>Play Again?</h3>
+        <button id="reset">Play Again</button>
     </div>
-    <br/>
+    <div class="start_modal">
+        <h1 id="game-title"><span class="black">&spades; </span><span class="red">&hearts; </span>Blackjack <span class="red">&diams;</span><span class="black"> &clubs;</span></h1>
+        <h3>Game Play: <br><br>
+        -Aces are 11-<br><br>
+        -J, Q, & K are 10-<br><br>
+        -Dealer wins if the hand results in a tie-<br><br>
+        -The player with the hand closest or equal to 21 wins the hand!-<br>
+        </h3>
+        <button id="startGame">start game</button>
+    </div>
+    
     <div id="player">
-      <h1>Player 1</h1>
+      
       <div class= ".player"></div>
       <div id="player_hand"></div>
       <div id="player_cards"></div>
+      <h1>Player 1<span class="black">&spades;</span><span class="red">&hearts; </span></h1>
       <div id="hand_total"></div>
       <div id="deck"></div>
     </div>
     <div id="buttons">
       <div></div>
       <div></div>
-      <button id="startGame">start game</button>
+      
       <button id="hit">Hit</button>
       <button id="stand">Stand</button>
       <div></div>

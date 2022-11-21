@@ -1,4 +1,4 @@
-![banner](/Users/timcarrington/sei/projects/Project_1_BlackJack/Modern Minimal Technology Background Banner.png)
+
 
 # Project_1_BlackJack
 

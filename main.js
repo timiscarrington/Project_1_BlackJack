@@ -5,6 +5,7 @@ const resetBtn= document.querySelector('#reset');
 const gameResultModal = document.querySelector('#result_modal');
 const startGameModal = document.querySelector('.start_modal');
 
+
 let cards = {
   deck: [],
   suits: ["C", "D", "H", "S"],
@@ -19,9 +20,12 @@ const dealer = {
   sumCards: 0,
   cards: [],
 };
+
 const startModal = () =>{
     startGameModal.classList.toggle('visible')
 }
+
+//calls all the functions needed to start game
 const startGame = () => {
 startModal();
 buildDeck();
@@ -32,6 +36,8 @@ sumOfDealer();
 displayPlayerTotal();
 displayPlayerHands();
 };
+
+//calls all the functions to reset game
 const playAgain= () =>{
 buildDeck();
 shuffle();
@@ -41,6 +47,8 @@ sumOfDealer();
 displayPlayerTotal();
 displayPlayerHands();
 }
+
+//loops through the two arrays and combines them and pushes them to the deck array
 const buildDeck = () => {
   for (let i = 0; i < cards.suits.length; i++) {
     for (j = 0; j < cards.values.length; j++) {
@@ -49,7 +57,7 @@ const buildDeck = () => {
   }
   return cards.deck;
 };
-
+//loops through the deck array, and grabs the [i] and swaps it with the random [j] 52 times to shuffle cards
 const shuffle = () => {
   for (let i = cards.deck.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1)); 
@@ -70,6 +78,7 @@ const displayPlayerTotal = () => {
     document.querySelector("#hand_total").textContent =
     "Hand Total:" + playerOne.sumCards;
 }
+//renders img to the DOM from the card file that matches the element in the array for player/dealer hands
 const displayPlayerHands = () => {
   
   for (let i = 0; i <= playerOne.cards.length - 1; i++) {
@@ -89,6 +98,7 @@ const displayPlayerHands = () => {
   }
 };
 
+// gives a numeric total to the hand of the player, to compare to in order to determine winning conditions
 function sumOfHand() {
   let cardInfo = playerOne.cards;
   let sum = 0;
@@ -128,7 +138,7 @@ const sumOfDealer = () => {
   }
   return dealer.sumCards;
 };
-
+//adds card to player hand, and renders img to dom of the card
 const playerHit = () => {
   playerOne.cards.push(cards.deck.shift());
   sumOfHand();
@@ -140,7 +150,7 @@ const playerHit = () => {
   displayPlayerTotal();
   bust();
 };
-
+//dealer will add cards if under 17, and then winning conditions are evaluated
 const playerStand = () => {
   if (dealer.sumCards < 17) {
     dealer.cards.push(cards.deck.shift());
@@ -179,6 +189,8 @@ const bust = () => {
 const toggleResultsModal = () => {
     gameResultModal.classList.toggle('visible');
 };
+
+//clears out arrays for player/dealer hands and clears img off of html page.
 const reset = () => {
     playerOne.cards.splice(0,playerOne.cards.length);
     dealer.cards.splice(0, dealer.cards.length);
